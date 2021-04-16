@@ -83,7 +83,7 @@ slope_for_power(sigma = sigma,
                 tVec = tVec,
                 referencePeriod = referencePeriod)
 slope50
-#> [1] 0.06997297
+#> [1] 0.06991527
 ```
 
 The package’s second (and main) function is *pretrends()*, which enables
@@ -127,7 +127,7 @@ trends.
 ``` r
 pretrendsResults$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.5004087    0.5662993        0.8577396
+#> 1 0.4997363    0.5671215        0.8589346
 ```
 
 Next, *df\_eventplot* contains the data used to make the event-plot. It
@@ -138,14 +138,14 @@ hypothesized trend.
 ``` r
 pretrendsResults$df_eventplot
 #>    t     betahat   deltatrue         se meanAfterPretesting
-#> 1 -4 -0.08942866 -0.20991892 0.12228981         -0.12253011
-#> 2 -3 -0.08939153 -0.13994595 0.10185069         -0.07517093
-#> 3 -2 -0.06860359 -0.06997297 0.07761490         -0.03060973
+#> 1 -4 -0.08942866 -0.20974582 0.12228981         -0.12249504
+#> 2 -3 -0.08939153 -0.13983055 0.10185069         -0.07515163
+#> 3 -2 -0.06860359 -0.06991527 0.07761490         -0.03060731
 #> 4 -1  0.00000000  0.00000000 0.00000000          0.00000000
-#> 5  0  0.09308024  0.06997297 0.07494899          0.09025988
-#> 6  1  0.18774731  0.13994595 0.10177085          0.16462622
-#> 7  2  0.18067996  0.20991892 0.10727871          0.23014848
-#> 8  3  0.09727819  0.27989189 0.15696300          0.29215653
+#> 5  0  0.09308024  0.06991527 0.07494899          0.09017188
+#> 6  1  0.18774731  0.13983055 0.10177085          0.16447429
+#> 7  2  0.18067996  0.20974582 0.10727871          0.22994584
+#> 8  3  0.09727819  0.27966110 0.15696300          0.29190725
 ```
 
 Finally, the plot event\_plot\_pretest adds the *meanAfterPretesting* to
@@ -156,3 +156,18 @@ pretrendsResults$event_plot_pretest
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+
+Although our example has focused on a linear violation of parallel
+trends, the package allows the user to input an arbitrary non-linear
+hypothesized trend. For instance, here is the event-plot from a
+quadratic trend.
+
+``` r
+  pretrends(betahat = beta, 
+            sigma = sigma, 
+            tVec = tVec, 
+            referencePeriod = referencePeriod,
+            deltatrue = -0.05 * (tVec - referencePeriod)^2)$event_plot_pretest
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />

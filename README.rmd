@@ -109,3 +109,14 @@ Finally, the plot event_plot_pretest adds the *meanAfterPretesting* to the origi
 ```{r}
 pretrendsResults$event_plot_pretest
 ```
+
+
+Although our example has focused on a linear violation of parallel trends, the package allows the user to input an arbitrary non-linear hypothesized trend. For instance, here is the event-plot from a quadratic trend.
+
+```{r}
+  pretrends(betahat = beta, 
+            sigma = sigma, 
+            tVec = tVec, 
+            referencePeriod = referencePeriod,
+            deltatrue = -0.05 * (tVec - referencePeriod)^2)$event_plot_pretest
+```
