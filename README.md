@@ -19,8 +19,8 @@ You can install the released version of pretrends from Github using the
 devtools package:
 
 ``` r
-# install.packages("devtools")
-#devtools::install_github("jonathandroth/pretrends")
+# install.packages("devtools") #install devtools if not installed
+devtools::install_github("jonathandroth/pretrends")
 ```
 
 ## Application to He and Wang (2017)
@@ -83,7 +83,7 @@ slope_for_power(sigma = sigma,
                 tVec = tVec,
                 referencePeriod = referencePeriod)
 slope50
-#> [1] 0.06991047
+#> [1] 0.06997297
 ```
 
 The package’s second (and main) function is *pretrends()*, which enables
@@ -127,7 +127,7 @@ trends.
 ``` r
 pretrendsResults$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.4997116     4.243786        0.8590341
+#> 1 0.5004087    0.5662993        0.8577396
 ```
 
 Next, *df\_eventplot* contains the data used to make the event-plot. It
@@ -138,14 +138,14 @@ hypothesized trend.
 ``` r
 pretrendsResults$df_eventplot
 #>    t     betahat   deltatrue         se meanAfterPretesting
-#> 1 -4 -0.08942866 -0.20973140 0.12228981         -0.12245985
-#> 2 -3 -0.08939153 -0.13982093 0.10185069         -0.07512602
-#> 3 -2 -0.06860359 -0.06991047 0.07761490         -0.03059375
+#> 1 -4 -0.08942866 -0.20991892 0.12228981         -0.12253011
+#> 2 -3 -0.08939153 -0.13994595 0.10185069         -0.07517093
+#> 3 -2 -0.06860359 -0.06997297 0.07761490         -0.03060973
 #> 4 -1  0.00000000  0.00000000 0.00000000          0.00000000
-#> 5  0  0.09308024  0.06991047 0.07494899          0.09017077
-#> 6  1  0.18774731  0.13982093 0.10177085          0.16446910
-#> 7  2  0.18067996  0.20973140 0.10727871          0.22993521
-#> 8  3  0.09727819  0.27964187 0.15696300          0.29189037
+#> 5  0  0.09308024  0.06997297 0.07494899          0.09025988
+#> 6  1  0.18774731  0.13994595 0.10177085          0.16462622
+#> 7  2  0.18067996  0.20991892 0.10727871          0.23014848
+#> 8  3  0.09727819  0.27989189 0.15696300          0.29215653
 ```
 
 Finally, the plot event\_plot\_pretest adds the *meanAfterPretesting* to
