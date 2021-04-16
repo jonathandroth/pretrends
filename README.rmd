@@ -93,9 +93,9 @@ Next, *df_power* displays several useful statistics about the power of the pre-t
 
 - **Power** The probability that we would find a significant pre-trend under the hypothesized pre-trend. (This is 0.50 by construction in our example).
 
--**Bayes Factor** The ratio of the probability of ''passing'' the pre-test under the hypothesized trend relative to under parallel trends.
+- **Bayes Factor** The ratio of the probability of ''passing'' the pre-test under the hypothesized trend relative to under parallel trends.
 
--**Likelihood Ratio** The ratio of the likelihood of the observed coefficients under the hypothesized trend relative to under pararallel trends.
+- **Likelihood Ratio** The ratio of the likelihood of the observed coefficients under the hypothesized trend relative to under pararallel trends.
 ```{r}
 pretrendsResults$df_power
 ```
