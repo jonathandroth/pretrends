@@ -1,0 +1,18 @@
+Package: pretrends
+Type: Package
+Title: Power Calculations and Visualization for Pre-trends
+Version: 0.1.0
+Author: Jonathan Roth
+Maintainer: Jonathan Roth <jonathan.roth@microsoft.com>
+Description: This package provides tools for evaluating the power of pre-trends tests, as well as the potential distortions from pre-testing. Given a hypothesized difference in trends, the user can calculate the power of the pre-trends test to detect the trend, and the expected bias conditional on passing the pre-test. The user can also calculate the linear violations of parallel trends against which the pre-test has a particular power level. The package also provides tools for visualizing violations of parallel trends on an event-plot.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    mvtnorm,
+    tmvtnorm,
+    stats,
+    magrittr,
+    dplyr,
+    ggplot2
