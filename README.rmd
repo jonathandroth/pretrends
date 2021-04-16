@@ -17,7 +17,9 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
   <!-- badges: end -->
 
-  The pretrends package provides tools for power calculations for pre-trends tests, and visualization of possible violations of parallel trends. Calculations are based on [Roth (2020)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf) (please cite the paper if you enjoy the package!).
+  The pretrends package provides tools for power calculations for pre-trends tests, and visualization of possible violations of parallel trends. Calculations are based on [Roth (2020)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf). (Please cite the paper if you enjoy the package!) 
+  
+If you're not an R user, you may also be interested in the associated [Shiny app](https://github.com/jonathandroth/PretrendsPower).
 
 ## Installation
 
