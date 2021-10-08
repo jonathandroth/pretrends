@@ -134,6 +134,12 @@ slope_for_power <- function(sigma,
                             referencePeriod = 0,
                             prePeriodIndices = which(tVec < referencePeriod)){
 
+
+  #Remove column/row names for sigma, since this yields problems with mtvmnorm
+  colnames(sigma) <- NULL
+  rownames(sigma) <- NULL
+
+
   findSlopeForPower_NIS(targetPower = targetPower,
                         sigma = sigma,
                         tVec = tVec,
