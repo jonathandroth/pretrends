@@ -38,8 +38,7 @@ pretrends <- function(betahat,
   rownames(sigma) <- NULL
 
   sigma <- as.matrix(sigma) #convert sigma to a matrix if it's not already
-  if( nrow(sigma) != ncol(sigma) | !isSymmetric(sigma) ){stop("sigma must be a symmetric positive definite matrix")}
-
+  if( NROW(sigma) != NCOL(sigma) | !isSymmetric(sigma) ){stop("sigma must be a symmetric positive definite matrix")}
 
   if(length(betahat) != NROW(sigma)){stop("The dimension of sigma must correspond with the number of event-study coefficients")}
   if(length(tVec) != length(betahat)){stop("The dimension of tVec must correspond with the number of event-study coefficients")}
@@ -144,8 +143,8 @@ slope_for_power <- function(sigma,
   rownames(sigma) <- NULL
 
   sigma <- as.matrix(sigma) #convert sigma to a matrix if it's not already
-  if( nrow(sigma) != ncol(sigma) | !isSymmetric(sigma) ){stop("sigma must be a symmetric positive definite matrix")}
-  if(length(tVec) != ncol(sigma)){stop("The dimension of tVec must correspond with the number of event-study coefficients, i.e. the number of rows/cols in sigma")}
+  if( NROW(sigma) != NROW(sigma) | !isSymmetric(sigma) ){stop("sigma must be a symmetric positive definite matrix")}
+  if(length(tVec) != NCOL(sigma)){stop("The dimension of tVec must correspond with the number of event-study coefficients, i.e. the number of rows/cols in sigma")}
   if(length(prePeriodIndices) == 0){stop("There are no pre-treatment periods with tVec < referencePeriod. If referencePeriod is not the last, pre-treatment period, use prePeriodIndices to denote the indices of the coefficients that are in the pre-treatment period. E.g., if the first two elements of beta are pre-treatment, use prePeriodIndices = c(1,2).")}
 
   findSlopeForPower_NIS(targetPower = targetPower,
