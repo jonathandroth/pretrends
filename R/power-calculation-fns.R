@@ -246,7 +246,7 @@ findSlopeForPower_NIS <- function(
   #slopeThatAchievesPower <- pracma::fsolve(powerMinusTarget, 0, maxiter = maxiter)$x
   slopeThatAchievesPower <- stats::uniroot(powerMinusTarget,
                                     lower = 0,
-                                    upper =  8 * max(sqrt(diag(sigmaPre))),
+                                    upper =  8 * max(sqrt(diag(as.matrix(sigmaPre)))),
                                     maxiter = maxiter)$root
 
   return(slopeThatAchievesPower)

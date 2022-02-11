@@ -11,7 +11,7 @@ The pretrends package provides tools for power calculations for
 pre-trends tests, and visualization of possible violations of parallel
 trends. Calculations are based on [Roth
 (2020)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf).
-(Please cite the paper if you enjoy the package\!)
+(Please cite the paper if you enjoy the package!)
 
 If you’re not an R user, you may also be interested in the associated
 [Shiny app](https://github.com/jonathandroth/PretrendsPower).
@@ -86,7 +86,7 @@ slope_for_power(sigma = sigma,
                 tVec = tVec,
                 referencePeriod = referencePeriod)
 slope50
-#> [1] 0.06992116
+#> [1] 0.06993189
 ```
 
 The package’s second (and main) function is *pretrends()*, which enables
@@ -116,24 +116,22 @@ pretrendsResults$event_plot
 Next, *df\_power* displays several useful statistics about the power of
 the pre-test against the hypothesized trend:
 
-  - **Power** The probability that we would find a significant pre-trend
+-   **Power** The probability that we would find a significant pre-trend
     under the hypothesized pre-trend. (This is 0.50 by construction in
     our example).
 
-  - **Bayes Factor** The ratio of the probability of ‘’passing’’ the
+-   **Bayes Factor** The ratio of the probability of ‘’passing’’ the
     pre-test under the hypothesized trend relative to under parallel
     trends.
 
-  - **Likelihood Ratio** The ratio of the likelihood of the observed
+-   **Likelihood Ratio** The ratio of the likelihood of the observed
     coefficients under the hypothesized trend relative to under
     pararallel trends.
-
-<!-- end list -->
 
 ``` r
 pretrendsResults$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.4996759    0.5672377        0.8588128
+#> 1 0.5000274    0.5666286        0.8585905
 ```
 
 Next, *df\_eventplot* contains the data used to make the event-plot. It
@@ -144,14 +142,14 @@ hypothesized trend.
 ``` r
 pretrendsResults$df_eventplot
 #>    t     betahat   deltatrue         se meanAfterPretesting
-#> 1 -4 -0.08942866 -0.20976347 0.12228981         -0.12246120
-#> 2 -3 -0.08939153 -0.13984231 0.10185069         -0.07513433
-#> 3 -2 -0.06860359 -0.06992116 0.07761490         -0.03059641
+#> 1 -4 -0.08942866 -0.20979566 0.12228981         -0.12251641
+#> 2 -3 -0.08939153 -0.13986378 0.10185069         -0.07516523
+#> 3 -2 -0.06860359 -0.06993189 0.07761490         -0.03061148
 #> 4 -1  0.00000000  0.00000000 0.00000000          0.00000000
-#> 5  0  0.09308024  0.06992116 0.07494899          0.09017880
-#> 6  1  0.18774731  0.13984231 0.10177085          0.16448752
-#> 7  2  0.18067996  0.20976347 0.10727871          0.22996451
-#> 8  3  0.09727819  0.27968463 0.15696300          0.29193119
+#> 5  0  0.09308024  0.06993189 0.07494899          0.09019404
+#> 6  1  0.18774731  0.13986378 0.10177085          0.16451411
+#> 7  2  0.18067996  0.20979566 0.10727871          0.23000126
+#> 8  3  0.09727819  0.27972755 0.15696300          0.29197723
 ```
 
 Finally, the plot event\_plot\_pretest adds the *meanAfterPretesting* to

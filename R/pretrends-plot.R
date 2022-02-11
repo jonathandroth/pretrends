@@ -57,8 +57,13 @@ pretrends <- function(betahat,
   power_against_0 <- rejectionProbability_NIS(betaPre = 0*betaPreAlt, SigmaPre = sigmaPre)
 
   #COmpute likelihoods under beta=betaPreAlt and beta=0
-  likelihood_betatrue <- mvtnorm::dmvnorm(x = betaPreActual, mean = betaPreAlt, sigma = sigmaPre)
-  likelihood_0 <- mvtnorm::dmvnorm(x = betaPreActual, mean = 0*betaPreAlt, sigma = sigmaPre)
+  if(length(prePeriodIndices) == 1){
+    likelihood_betatrue <- stats::dnorm(x = betaPreActual, mean = betaPreAlt, sd = sqrt(sigmaPre))
+    likelihood_0 <- stats::dnorm(x = betaPreActual, mean = 0*betaPreAlt, sd = sqrt(sigmaPre))
+  }else{
+    likelihood_betatrue <- mvtnorm::dmvnorm(x = betaPreActual, mean = betaPreAlt, sigma = sigmaPre)
+    likelihood_0 <- mvtnorm::dmvnorm(x = betaPreActual, mean = 0*betaPreAlt, sigma = sigmaPre)
+  }
 
   #Compute the means after pre-testing
   meanBetaPre <- meanBetaPre_NIS(betaPre = betaPreAlt,sigmaPre = sigmaPre)
