@@ -2,3 +2,5 @@
 .Rproj.user/
 .Rhistory
 1-preperiod-example.R
+*/.DS_Store
+.DS_Store

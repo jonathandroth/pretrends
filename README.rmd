@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
   <!-- badges: end -->
 
-  The pretrends package provides tools for power calculations for pre-trends tests, and visualization of possible violations of parallel trends. Calculations are based on [Roth (2020)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf). (Please cite the paper if you enjoy the package!) 
+  The pretrends package provides tools for power calculations for pre-trends tests, and visualization of possible violations of parallel trends. Calculations are based on [Roth (Forthcoming)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf). (Please cite the paper if you enjoy the package!) 
   
 If you're not an R user, you may also be interested in the associated [Shiny app](https://github.com/jonathandroth/PretrendsPower).
 
@@ -33,7 +33,7 @@ devtools::install_github("jonathandroth/pretrends")
 
 ## Application to He and Wang (2017)
 
-We illustrate how to use the package with an application to [He and Wang (2017)](https://www.aeaweb.org/articles?id=10.1257/app.20160079). The analysis will be based on the event-study in Figure 2A, which looks like this:
+We illustrate how to use the package with an application to [He and Wang (2017)](https://www.aeaweb.org/articles?id=10.1257/app.20160079). The analysis will be based on the event-study in Figure 2C, which looks like this:
 
 ![He and Wang Plot.](man/figures/HeAndWang.png)
 
@@ -91,11 +91,11 @@ pretrendsResults$event_plot
 
 Next, *df_power* displays several useful statistics about the power of the pre-test against the hypothesized trend:
 
-- **Power** The probability that we would find a significant pre-trend under the hypothesized pre-trend. (This is 0.50 by construction in our example).
+- **Power** The probability that we would find a significant pre-trend under the hypothesized pre-trend. (This is 0.50, up to numerical precision error, by construction in our example).
 
 - **Bayes Factor** The ratio of the probability of ''passing'' the pre-test under the hypothesized trend relative to under parallel trends.
 
-- **Likelihood Ratio** The ratio of the likelihood of the observed coefficients under the hypothesized trend relative to under pararallel trends.
+- **Likelihood Ratio** The ratio of the likelihood of the observed coefficients under the hypothesized trend relative to under parallel trends.
 ```{r}
 pretrendsResults$df_power
 ```
@@ -113,12 +113,18 @@ pretrendsResults$event_plot_pretest
 ```
 
 
-Although our example has focused on a linear violation of parallel trends, the package allows the user to input an arbitrary non-linear hypothesized trend. For instance, here is the event-plot from a quadratic trend.
+Although our example has focused on a linear violation of parallel trends, the package allows the user to input an arbitrary non-linear hypothesized trend. For instance, here is the event-plot and power analysis from a quadratic trend.
 
 ```{r}
+  quadraticPretrend <-
   pretrends(betahat = beta, 
             sigma = sigma, 
             tVec = tVec, 
             referencePeriod = referencePeriod,
-            deltatrue = -0.05 * (tVec - referencePeriod)^2)$event_plot_pretest
+            deltatrue = 0.024 * (tVec - referencePeriod)^2)
+
+quadraticPretrend$event_plot_pretest
+```
+```{r}
+quadraticPretrend$df_power
 ```

@@ -10,7 +10,7 @@
 The pretrends package provides tools for power calculations for
 pre-trends tests, and visualization of possible violations of parallel
 trends. Calculations are based on [Roth
-(2020)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf).
+(Forthcoming)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf).
 (Please cite the paper if you enjoy the package!)
 
 If you’re not an R user, you may also be interested in the associated
@@ -30,7 +30,7 @@ devtools::install_github("jonathandroth/pretrends")
 
 We illustrate how to use the package with an application to [He and Wang
 (2017)](https://www.aeaweb.org/articles?id=10.1257/app.20160079). The
-analysis will be based on the event-study in Figure 2A, which looks like
+analysis will be based on the event-study in Figure 2C, which looks like
 this:
 
 ![He and Wang Plot.](man/figures/HeAndWang.png)
@@ -60,14 +60,14 @@ sigma <- pretrends::HeAndWangResults$sigma
 tVec <- pretrends::HeAndWangResults$tVec
 referencePeriod <- -1 #This is the omitted period in the regression
 data.frame(t = tVec, beta = beta)
-#>    t        beta
-#> 1 -4 -0.08942866
-#> 2 -3 -0.08939153
-#> 3 -2 -0.06860359
-#> 4  0  0.09308024
-#> 5  1  0.18774731
-#> 6  2  0.18067996
-#> 7  3  0.09727819
+#>    t         beta
+#> 1 -4  0.066703148
+#> 2 -3 -0.007701792
+#> 3 -2 -0.030769054
+#> 4  0  0.084030658
+#> 5  1  0.242441818
+#> 6  2  0.219878986
+#> 7  3  0.191092536
 ```
 
 ### Using the package
@@ -86,7 +86,7 @@ slope_for_power(sigma = sigma,
                 tVec = tVec,
                 referencePeriod = referencePeriod)
 slope50
-#> [1] 0.06993189
+#> [1] 0.0520569
 ```
 
 The package’s second (and main) function is *pretrends()*, which enables
@@ -117,21 +117,21 @@ Next, *df\_power* displays several useful statistics about the power of
 the pre-test against the hypothesized trend:
 
 -   **Power** The probability that we would find a significant pre-trend
-    under the hypothesized pre-trend. (This is 0.50 by construction in
-    our example).
+    under the hypothesized pre-trend. (This is 0.50, up to numerical
+    precision error, by construction in our example).
 
 -   **Bayes Factor** The ratio of the probability of ‘’passing’’ the
     pre-test under the hypothesized trend relative to under parallel
     trends.
 
 -   **Likelihood Ratio** The ratio of the likelihood of the observed
-    coefficients under the hypothesized trend relative to under
-    pararallel trends.
+    coefficients under the hypothesized trend relative to under parallel
+    trends.
 
 ``` r
 pretrendsResults$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.5000274    0.5666286        0.8585905
+#> 1 0.4999383    0.5692008        0.1057765
 ```
 
 Next, *df\_eventplot* contains the data used to make the event-plot. It
@@ -141,15 +141,15 @@ hypothesized trend.
 
 ``` r
 pretrendsResults$df_eventplot
-#>    t     betahat   deltatrue         se meanAfterPretesting
-#> 1 -4 -0.08942866 -0.20979566 0.12228981         -0.12251641
-#> 2 -3 -0.08939153 -0.13986378 0.10185069         -0.07516523
-#> 3 -2 -0.06860359 -0.06993189 0.07761490         -0.03061148
-#> 4 -1  0.00000000  0.00000000 0.00000000          0.00000000
-#> 5  0  0.09308024  0.06993189 0.07494899          0.09019404
-#> 6  1  0.18774731  0.13986378 0.10177085          0.16451411
-#> 7  2  0.18067996  0.20979566 0.10727871          0.23000126
-#> 8  3  0.09727819  0.27972755 0.15696300          0.29197723
+#>    t      betahat  deltatrue         se meanAfterPretesting
+#> 1 -4  0.066703148 -0.1561707 0.09437463         -0.09229763
+#> 2 -3 -0.007701792 -0.1041138 0.07705139         -0.05554763
+#> 3 -2 -0.030769054 -0.0520569 0.05512372         -0.02790685
+#> 4 -1  0.000000000  0.0000000 0.00000000          0.00000000
+#> 5  0  0.084030658  0.0520569 0.06264775          0.06489968
+#> 6  1  0.242441818  0.1041138 0.08981034          0.12084228
+#> 7  2  0.219878986  0.1561707 0.08877826          0.16945912
+#> 8  3  0.191092536  0.2082276 0.09893648          0.22453004
 ```
 
 Finally, the plot event\_plot\_pretest adds the *meanAfterPretesting* to
@@ -163,15 +163,24 @@ pretrendsResults$event_plot_pretest
 
 Although our example has focused on a linear violation of parallel
 trends, the package allows the user to input an arbitrary non-linear
-hypothesized trend. For instance, here is the event-plot from a
-quadratic trend.
+hypothesized trend. For instance, here is the event-plot and power
+analysis from a quadratic trend.
 
 ``` r
+  quadraticPretrend <-
   pretrends(betahat = beta, 
             sigma = sigma, 
             tVec = tVec, 
             referencePeriod = referencePeriod,
-            deltatrue = -0.05 * (tVec - referencePeriod)^2)$event_plot_pretest
+            deltatrue = 0.024 * (tVec - referencePeriod)^2)
+
+quadraticPretrend$event_plot_pretest
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
+
+``` r
+quadraticPretrend$df_power
+#>       Power Bayes.Factor Likelihood.Ratio
+#> 1 0.6623579     0.384253        0.4332635
+```
