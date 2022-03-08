@@ -106,7 +106,7 @@ Next, *df_eventplot* contains the data used to make the event-plot. It also incl
 pretrendsResults$df_eventplot
 ```
 
-Finally, the plot event_plot_pretest adds the *meanAfterPretesting* to the original event-plot.
+Finally, the plot event_plot_pretest adds the *meanAfterPretesting* to the original event-plot (see description above).
 
 ```{r}
 pretrendsResults$event_plot_pretest

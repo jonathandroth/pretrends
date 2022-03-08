@@ -86,7 +86,7 @@ slope_for_power(sigma = sigma,
                 tVec = tVec,
                 referencePeriod = referencePeriod)
 slope50
-#> [1] 0.0520569
+#> [1] 0.05205532
 ```
 
 The package’s second (and main) function is *pretrends()*, which enables
@@ -131,7 +131,7 @@ the pre-test against the hypothesized trend:
 ``` r
 pretrendsResults$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.4999383    0.5692008        0.1057765
+#> 1 0.5002036     0.568873        0.1057885
 ```
 
 Next, *df\_eventplot* contains the data used to make the event-plot. It
@@ -141,19 +141,19 @@ hypothesized trend.
 
 ``` r
 pretrendsResults$df_eventplot
-#>    t      betahat  deltatrue         se meanAfterPretesting
-#> 1 -4  0.066703148 -0.1561707 0.09437463         -0.09229763
-#> 2 -3 -0.007701792 -0.1041138 0.07705139         -0.05554763
-#> 3 -2 -0.030769054 -0.0520569 0.05512372         -0.02790685
-#> 4 -1  0.000000000  0.0000000 0.00000000          0.00000000
-#> 5  0  0.084030658  0.0520569 0.06264775          0.06489968
-#> 6  1  0.242441818  0.1041138 0.08981034          0.12084228
-#> 7  2  0.219878986  0.1561707 0.08877826          0.16945912
-#> 8  3  0.191092536  0.2082276 0.09893648          0.22453004
+#>    t      betahat   deltatrue         se meanAfterPretesting
+#> 1 -4  0.066703148 -0.15616597 0.09437463         -0.09230893
+#> 2 -3 -0.007701792 -0.10411065 0.07705139         -0.05555751
+#> 3 -2 -0.030769054 -0.05205532 0.05512372         -0.02791375
+#> 4 -1  0.000000000  0.00000000 0.00000000          0.00000000
+#> 5  0  0.084030658  0.05205532 0.06264775          0.06489833
+#> 6  1  0.242441818  0.10411065 0.08981034          0.12083950
+#> 7  2  0.219878986  0.15616597 0.08877826          0.16945475
+#> 8  3  0.191092536  0.20822130 0.09893648          0.22452411
 ```
 
 Finally, the plot event\_plot\_pretest adds the *meanAfterPretesting* to
-the original event-plot.
+the original event-plot (see description above).
 
 ``` r
 pretrendsResults$event_plot_pretest
@@ -182,5 +182,5 @@ quadraticPretrend$event_plot_pretest
 ``` r
 quadraticPretrend$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.6623579     0.384253        0.4332635
+#> 1 0.6624793    0.3840147        0.4332635
 ```
