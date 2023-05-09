@@ -9,12 +9,13 @@
 
 The pretrends package provides tools for power calculations for
 pre-trends tests, and visualization of possible violations of parallel
-trends. Calculations are based on [Roth
-(Forthcoming)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf).
+trends. Calculations are based on [Roth (2022,
+AER:Insights)](https://jonathandroth.github.io/assets/files/roth_pretrends_testing.pdf).
 (Please cite the paper if you enjoy the package!)
 
 If you’re not an R user, you may also be interested in the associated
-[Shiny app](https://github.com/jonathandroth/PretrendsPower).
+[Stata package](https://github.com/mcaceresb/stata-pretrends#pretrends)
+or [Shiny app](https://github.com/jonathandroth/PretrendsPower).
 
 ## Installation
 
@@ -73,9 +74,9 @@ data.frame(t = tVec, beta = beta)
 ### Using the package
 
 The pretrends package has two main functions. The first is
-*slope\_for\_power()*, which calculates the slope of a linear violation
-of parallel trends that a pre-trends test would detect a specified
-fraction of the time. (By detect, we mean that there is any significant
+*slope_for_power()*, which calculates the slope of a linear violation of
+parallel trends that a pre-trends test would detect a specified fraction
+of the time. (By detect, we mean that there is any significant
 pre-treatment coefficient.)
 
 ``` r
@@ -86,7 +87,7 @@ slope_for_power(sigma = sigma,
                 tVec = tVec,
                 referencePeriod = referencePeriod)
 slope50
-#> [1] 0.05205532
+#> [1] 0.0520609
 ```
 
 The package’s second (and main) function is *pretrends()*, which enables
@@ -113,7 +114,7 @@ pretrendsResults$event_plot
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
-Next, *df\_power* displays several useful statistics about the power of
+Next, *df_power* displays several useful statistics about the power of
 the pre-test against the hypothesized trend:
 
 -   **Power** The probability that we would find a significant pre-trend
@@ -131,28 +132,28 @@ the pre-test against the hypothesized trend:
 ``` r
 pretrendsResults$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.5002036     0.568873        0.1057885
+#> 1 0.4996962    0.5693746         0.105746
 ```
 
-Next, *df\_eventplot* contains the data used to make the event-plot. It
+Next, *df_eventplot* contains the data used to make the event-plot. It
 also includes a column *meanAfterPretesting*, which shows the expected
 value of the coefficients conditional on passing the pre-test under the
 hypothesized trend.
 
 ``` r
 pretrendsResults$df_eventplot
-#>    t      betahat   deltatrue         se meanAfterPretesting
-#> 1 -4  0.066703148 -0.15616597 0.09437463         -0.09230893
-#> 2 -3 -0.007701792 -0.10411065 0.07705139         -0.05555751
-#> 3 -2 -0.030769054 -0.05205532 0.05512372         -0.02791375
-#> 4 -1  0.000000000  0.00000000 0.00000000          0.00000000
-#> 5  0  0.084030658  0.05205532 0.06264775          0.06489833
-#> 6  1  0.242441818  0.10411065 0.08981034          0.12083950
-#> 7  2  0.219878986  0.15616597 0.08877826          0.16945475
-#> 8  3  0.191092536  0.20822130 0.09893648          0.22452411
+#>    t      betahat  deltatrue         se meanAfterPretesting
+#> 1 -4  0.066703148 -0.1561827 0.09437463         -0.09231506
+#> 2 -3 -0.007701792 -0.1041218 0.07705139         -0.05555288
+#> 3 -2 -0.030769054 -0.0520609 0.05512372         -0.02790767
+#> 4 -1  0.000000000  0.0000000 0.00000000          0.00000000
+#> 5  0  0.084030658  0.0520609 0.06264775          0.06490538
+#> 6  1  0.242441818  0.1041218 0.08981034          0.12085292
+#> 7  2  0.219878986  0.1561827 0.08877826          0.16947289
+#> 8  3  0.191092536  0.2082436 0.09893648          0.22454859
 ```
 
-Finally, the plot event\_plot\_pretest adds the *meanAfterPretesting* to
+Finally, the plot event_plot_pretest adds the *meanAfterPretesting* to
 the original event-plot (see description above).
 
 ``` r
@@ -182,5 +183,5 @@ quadraticPretrend$event_plot_pretest
 ``` r
 quadraticPretrend$df_power
 #>       Power Bayes.Factor Likelihood.Ratio
-#> 1 0.6624793    0.3840147        0.4332635
+#> 1 0.6624588    0.3842651        0.4332635
 ```
